@@ -89,29 +89,34 @@ public class ServiceConsolePage extends PreAndPost {
 		return this;
 	}
 	
-	public ServiceConsolePage verifyFileExtension() {
+	public ServiceConsolePage verifyFileExtension() throws InterruptedException {
 		String actFileExtension = getText(locateElement("xpath", "//span[@title='File Extension']/following::span"));
 		Assert.assertEquals(actFileExtension, "png");
+		Thread.sleep(2000);
 		return this;
 	}
 	
-	public ServiceConsolePage closeFileWindowTab() {
+	public ServiceConsolePage closeFileWindowTab() throws InterruptedException {
 		click(locateElement("xpath", "//div[@class='close slds-col--bump-left slds-p-left--none slds-context-bar__icon-action ']"));
+		Thread.sleep(2000);
 		return this;
 	}
 	
-	public ServiceConsolePage clickLastModifiedItem() {
+	public ServiceConsolePage clickLastModifiedItem() throws InterruptedException {
 		click(locateElement("xpath", "(//div[@class='slds-truncate']//span)[1]"));
+		Thread.sleep(2000);
 		return this;
 	}
 	
-	public ServiceConsolePage clickOnShare() {
+	public ServiceConsolePage clickOnShare() throws InterruptedException {
 		click(locateElement("xpath", "//button[@title='Share']"));
+		Thread.sleep(2000);
 		return this;
 	}
 	
-	public ServiceConsolePage clickOnSearchUser() {
+	public ServiceConsolePage clickOnSearchUser() throws InterruptedException {
 		click(locateElement("xpath", "//input[@title='Search People']"));
+		Thread.sleep(2000);
 		return this;
 	}
 	
