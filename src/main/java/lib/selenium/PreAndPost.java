@@ -1,9 +1,15 @@
 package lib.selenium;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -34,7 +40,7 @@ public class PreAndPost extends WebDriverServiceImpl{
 	}
 	
 	@BeforeMethod
-	public void beforeMethod() {
+	public void beforeMethod() throws MalformedURLException {
 		//for reports		
 		startTestModule(nodes);//each data row -> one testcase
 		test.assignAuthor(authors);
@@ -44,6 +50,20 @@ public class PreAndPost extends WebDriverServiceImpl{
 		ChromeOptions ops = new ChromeOptions();
 		ops.addArguments("--disable-notifications");
 		webdriver = new ChromeDriver(ops);
+		/*
+		webdriver = new ChromeDriver(ops);
+		
+		//Grid
+		
+		DesiredCapabilities dc = new DesiredCapabilities();
+		dc.setBrowserName("chrome");
+		dc.setPlatform(Platform.WINDOWS);
+		
+		WebDriverManager.chromedriver().setup();
+		ChromeOptions ops = new ChromeOptions();
+		ops.addArguments("--disable-notifications");
+		webdriver = new RemoteWebDriver(new URL("http://192.168.1.102:4444/wd/hub"),ops);
+		*/
 		driver = new EventFiringWebDriver(webdriver);
 		driver.register(this);
 		driver.manage().window().maximize();

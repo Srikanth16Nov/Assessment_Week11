@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import com.aventstack.extentreports.ExtentTest;
 
@@ -43,7 +44,7 @@ public class ServiceConsolePage extends PreAndPost {
 
 	public ServiceConsolePage uploadFileUsingRobot() throws InterruptedException, AWTException {
 		// upload files
-		StringSelection stringSelection = new StringSelection("C:\\Users\\srikanth\\Desktop\\selenium.png");
+		StringSelection stringSelection = new StringSelection("C:\\Users\\srikanth\\Desktop\\MakaiaWithMaven_Assessment\\data\\selenium.png");
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 
 		// Paste it using Robot class
@@ -85,20 +86,24 @@ public class ServiceConsolePage extends PreAndPost {
 	
 	public ServiceConsolePage verifyFileName() {
 		String actFileName = getText(locateElement("xpath", "//div[text()='File']/following::span"));
-		Assert.assertEquals(actFileName, "selenium");
+		SoftAssert sf = new SoftAssert();
+		sf.assertEquals(actFileName, "selenium");
+		//Assert.assertEquals(actFileName, "selenium");
 		return this;
 	}
 	
 	public ServiceConsolePage verifyFileExtension() throws InterruptedException {
 		String actFileExtension = getText(locateElement("xpath", "//span[@title='File Extension']/following::span"));
-		Assert.assertEquals(actFileExtension, "png");
+		SoftAssert sf = new SoftAssert();
+		sf.assertEquals(actFileExtension, "png");
+		//Assert.assertEquals(actFileExtension, "png");
 		Thread.sleep(2000);
 		return this;
 	}
 	
 	public ServiceConsolePage closeFileWindowTab() throws InterruptedException {
 		click(locateElement("xpath", "//div[@class='close slds-col--bump-left slds-p-left--none slds-context-bar__icon-action ']"));
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		return this;
 	}
 	
